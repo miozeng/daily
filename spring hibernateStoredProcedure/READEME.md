@@ -6,7 +6,7 @@
 ## 还有几种没测试的方式
 ## 1. NamedNativeQuery in annotation
 Declare your store procedure inside the @NamedNativeQueries annotation.
-
+```Java
 //Stock.java
 ...
 @NamedNativeQueries({
@@ -29,9 +29,10 @@ for(int i=0; i<result.size(); i++){
 	Stock stock = (Stock)result.get(i);
 	System.out.println(stock.getStockCode());
 }
+```
 ## 2. sql-query in XML mapping file
 Declare your store procedure inside the "sql-query" tag.
-
+```Java
 <!-- Stock.hbm.xml -->
 ...
 <hibernate-mapping>
@@ -52,10 +53,10 @@ Declare your store procedure inside the "sql-query" tag.
     </sql-query>
 
 </hibernate-mapping>
-
+```
 
 ## 3. When using the @NamedStoredProcedureQuery annotation, we can specify parameters using the @StoredProcedureParameter annotation:
-
+```Java
 @NamedStoredProcedureQuery(
   name="GetFoosByName",
   procedureName="GetFoosByName",
@@ -74,3 +75,4 @@ StoredProcedureQuery spQuery = entityManager.
     String.class , 
     ParameterMode.IN
   );
+  ```
