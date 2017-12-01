@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> 
+    <encoder>
+        <pattern>%d{yyyy-MM-dd HH:mm:ss} [%level] - %m%n</pattern>
+    </encoder>
+  </appender>
+  
+  <appender name="INFO-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${JBOSS_HOME}/log/mio.log</file>
+    <encoder>
+        <pattern>%d{yyyy-MM-dd HH:mm:ss} [%class:%line] - %m%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${JBOSS_HOME}/log/mio.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <maxHistory>30</maxHistory>
+      <cleanHistoryOnStart>false</cleanHistoryOnStart>  
+    </rollingPolicy>
+    <append>true</append>  
+  </appender>
+
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="INFO-OUT" />
+  </root>
+</configuration>
